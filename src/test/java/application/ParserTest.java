@@ -32,13 +32,14 @@ class ParserTest {
         // check if the file is parsed as expected
         Deque<Character> referenceStack = createReferenceStack(filename);
         assertTrue(compareDeque(parser.getElementStack(), referenceStack));
+
     }
 
     @Test
     @DisplayName("Check if the correct exception is thrown }")
     void missingClosingBracket() {
         ParsingException thrown = Assertions.assertThrows(ParsingException.class, () -> {
-            new Parser().parseFile("missing}.txt");
+            new Parser().parseFile("missing2.txt");
         });
 
         assertEquals("Error parsing the file. } expected", thrown.getMessage());
@@ -48,7 +49,7 @@ class ParserTest {
     @DisplayName("Check if the correct exception is thrown {")
     void missingOpeningBracket() {
         ParsingException thrown = Assertions.assertThrows(ParsingException.class, () -> {
-            new Parser().parseFile("missing{.txt");
+            new Parser().parseFile("missing1.txt");
         });
 
         assertEquals("Error parsing the file. { expected", thrown.getMessage());
